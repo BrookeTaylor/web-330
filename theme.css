@@ -1,0 +1,219 @@
+/**
+    Title: Assignment 1.3 Environment Setup
+    Arthur: Professor Krasso
+    Date: 01/08/23
+    Modified By: Brooks
+    Description: This is a homework assignment 
+    for the fist week of class. Following directions 
+    per the assignment guidelines. 
+*/
+
+/**
+    Adds CSS style to each card, giving it a faded 
+    box shadow effect. Replace the CSS card classes 
+    background color with the variable --card-backgroundcolor. 
+*/
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    background-color: var(--card-background-color);
+}
+
+/**
+    Center aligns card titles makes them two times 
+    bigger and gives them a text color. Replace the 
+    CSS card-title classes color with the 
+    variable --card-title-color.  
+*/
+.card-title {
+    text-align: center;
+    font-size: 2em;
+    color: var(--card-title-color);
+    font-weight: 400;
+}
+
+/**
+    Adds padding to each card contents. 
+*/
+.card-content {
+    padding: 2px 16px;
+}
+
+/**
+    When mouse over, card box shadow will darken. 
+*/
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/**
+    Button class which removes borders, 
+    underlines and centers text and 
+    colors it as well. Added some padding too. 
+*/
+.btn {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 15px 32px;
+    color: black;
+}
+
+/**
+    CSS Button class which gives a background color 
+    and changes the text color. Replace the 
+    CSS btn-primary classes background color 
+    with the variable --btnbackground-color 
+    and the text color with the variable --btn-color.  
+*/
+.btn-primary {
+    background-color: var(--btn-background-color);
+    color: var(--btn-color);
+}
+
+/**
+    CSS Button style to change background color and 
+    text color on mouse over. l.	Replace the CSS 
+    btn-primary:hover background color with the variable 
+    --btn-hoverbackground-color and the text color with the 
+    variable --btn-hover-color.  
+*/
+.btn-primary:hover {
+    background-color: var(--btn-hover-background-color);
+    color: var(--btn-hover-color);
+}
+
+/**
+    "input" class for form fields. Adds margin and 
+    padding as well as border with a radius. Replace the 
+    CSS input classes border color with the variable --input-border-color.   
+*/
+.input {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/**
+    Drop down menu which adds margin and 
+    padding as well as border with a radius. Replace 
+    the CSS drop-down-menu classes border color with the 
+    variable --inputborder-color.  
+*/
+.drop-down-menu {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/**
+    Add a CSS class for light-theme and assign it to the HTML body element  
+*/
+body.light-theme {
+    --text-color: #000;
+    --background-color: #fff;
+    --anchor-color: #4F3674;
+    --h1-background-color: #3C275A;
+    --h1-border-color: #D6A800;
+    --heading-background-color: #3C275A;
+    --heading-color: #fff;
+    --heading-border-color: #D6A800;
+    --anchor-hover-color: #4F3674;
+    --anchor-hover-background-color: #D6A800;
+    --card-background-color: #fff;
+    --card-title-color: #4F3674;
+    --btn-background-color: #4F3674;
+    --btn-color: #fff;
+    --btn-hover-background-color: #D6A800;
+    --btn-hover-color: #4F3674;
+    --input-border-color: #CCC;
+}
+
+/**
+    Add a CSS class for dark-theme and assign it to the HTML body 
+*/
+body.dark-theme {
+	--text-color: #FAFAFA;
+	--background-color: #303030;
+	--anchor-color: #FFF;
+	--h1-background-color: #9C27B0;
+	--h1-border-color: #9C27B0;
+	--heading-background-color: #424242;
+	--heading-color: #FFF;
+	--heading-border-color: #424242;
+	--anchor-hover-color: #D176E1;
+	--anchor-hover-background-color: #303030;
+	--card-background-color: #424242;
+	--card-title-color: #D176E1;
+	--btn-background-color: #D176E1;
+	--btn-color: #FFF;
+	--btn-border-color: #303030;
+	--btn-hover-background-color: #7D4787;
+	--btn-hover-color: #FFF;
+	--input-border-color: #303030;
+}
+
+/**
+    Set the HTML body color and background to the --text-color and --background-color variables.  
+*/
+body {
+    color: var(--text-color);
+    background: var(--background-color);
+}
+
+/**
+    Set the HTML anchor color to the variable --anchor-color and remove the underline
+*/
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+/**
+    Set the HTML anchor hover background color to the variable 
+    --anchor-hoverbackground-color and the text color to the 
+    variable --anchor-hover-color.  
+*/
+a:hover {
+    background-color: var(--anchor-hover-background-color);
+    color: var(--anchor-hover-color);
+}
+
+/**
+    Set the HTML h1 heading color to the variable --heading-color, 
+    the background color to the variable --h1-background-color, 
+    give it a padding of 10 pixels, and a boarder of a 
+    solid one pixel and assign the variable --h1-border-color 
+    to the border color.   
+*/
+h1 {
+    color: var( --heading-color);
+    background-color: var(--h1-background-color);
+    padding: 10px;
+    border: 1px solid var(--h1-border-color);
+}
+
+/**
+    Set the HTML h2, h3, and h4 color to the 
+    variable --heading-color, the background color to 
+    the variable --heading-background-color, give it 
+    padding of 10 pixels, and a border of a 
+    solid one pixel and assign the 
+    variable --heading-border-color to the border color.  
+*/
+h2, h3, h4 {
+    color: var(--heading-color);
+    background-color: var(--heading-background-color);
+    padding: 10px;
+    border: 1px solid var(--h1-border-color);
+}

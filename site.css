@@ -1,0 +1,132 @@
+/**
+    Title: Assignment 1.3 Environment Setup
+    Arthur: Professor Krasso
+    Date: 01/08/23
+    Modified By: Brooks
+    Description: This is a homework assignment 
+    for the fist week of class. Following directions 
+    per the assignment guidelines. 
+*/
+
+/**
+    Set all fonts to Oswald, Verdana, Ariel, and lastly sans-serif.
+*/
+* {
+    font-family: Oswald, Verdana, Ariel, sans-serif; 
+}
+
+/**
+    Add a CSS entry for #container and set the margin top 
+    to 50 pixels, the left margin to 100 pixels, 
+    and the right margin to 100 pixels. 
+*/
+#container {
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+/**
+    In the class value of .return-home sets the links to have a text 
+    color and removes the underline decoration.
+*/
+.return-home a {
+    color: #4F3674;
+    text-decoration: none;
+}
+
+/**
+    In the class value of .return-home links on hover with change 
+    background color. 
+*/
+.return-home a:hover {
+    background-color: #D6A800;
+    color: #4F3674;
+}
+
+/**
+    In the class value of .return-home links previously visited will
+    have the following text color. 
+*/
+.return-home a:visited {
+    color: #3C275A;
+}
+
+/**
+    Sets the class to the full width of parent 
+    element. 
+*/
+.full-width {
+    width: 100%;
+}
+
+/**
+    Sets forms to align in grid form; sets to one 
+    column. 
+*/
+.form {
+    display: inline-grid;
+    grid-template-columns: auto;
+}
+
+/**
+    Increases padding to make more legible.
+*/
+.form-field {
+    padding: 20px;
+}
+
+/**
+    The first class you will create is named assign-container.  Give this class a padding of 10 pixels.  
+*/
+.assign-container {
+    padding: 10px;
+}
+
+/**
+    The second class you will create is called assign-content.  Give this class a width of 600 pixels and a margin of 3% auto 0.  
+*/
+.assign-content {
+    width: 600px;
+    margin: 3% auto 0;
+}
+
+/**
+    The third class you will create is called assign-results-text.  Center the text and give this class a font size of 28 pixels.  
+*/
+.assign-results-text {
+    text-align: center;
+    font-size: 28px;
+}
+
+/**
+    Styles added per the requirements in the Web 330 HTML, CSS, and JavaScript Requirements document.
+ */
+.app-header {
+    font-weight: 400;
+    border: var(--h1-border-color);
+    color: var( --heading-color);
+    background-color: var(--h1-background-color);
+}
+
+
+/**
+    Add a CSS entry for #icon-mode:hover and set the cursor to a pointer. 
+*/
+#icon-mode:hover {
+    cursor: pointer;
+}
+
+/**
+    Add a CSS entry for #icon-text and set the left padding to 10 pixels. 
+*/
+#icon-text {
+    padding-left: 10px;
+}
+
+/**
+    Add a CSS class named pull-right and give it a style of float right. 
+*/
+.pull-right {
+    float: right;
+}
