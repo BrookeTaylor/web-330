@@ -2,5 +2,5 @@
 
 ## Contributors
 
-..* Professor Krasso
-..* Brooke Taylor
+* Professor Krasso
+* Brooke Taylor
