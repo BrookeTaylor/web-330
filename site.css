@@ -100,15 +100,25 @@
 }
 
 /**
-    Styles added per the requirements in the Web 330 HTML, CSS, and JavaScript Requirements document.
+    Set app-header as an <id> for the index.html Since it's different than our other <h1>s.
  */
-.app-header {
+#app-header {
     font-weight: 400;
     border: var(--h1-border-color);
     color: var( --heading-color);
     background-color: var(--h1-background-color);
 }
 
+/**
+    Styles added per the requirements in the Web 330 HTML, CSS, and JavaScript Requirements document.
+ */
+ .app-header {
+    text-align: center;
+    font-weight: 400;
+    border: none;
+    color: var( --card-title-color);
+    background-color: var(--background-color);
+}
 
 /**
     Add a CSS entry for #icon-mode:hover and set the cursor to a pointer. 
