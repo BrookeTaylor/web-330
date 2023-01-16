@@ -1,0 +1,316 @@
+<!-- 
+    Title: Assignment 2.2 Palindrome App!
+    Arthur: Professor Krasso
+    Date: 01/15/23
+    Modified By: Brooks
+    Description: Assignment 2.2 Palindrome App!
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Give the HTML document a title of “WEB 330 – Enterprise JavaScript II” -->
+    <title>WEB 330 – Enterprise JavaScript II</title>
+
+    <!-- Link to external stylesheets. -->
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="../site.css">
+
+    <!-- Font Awesome. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <!-- Google Fonts Oswald. -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link to theme.js script. -->
+    <script src="../theme.js"></script>
+
+</head>
+
+<!-- Give the HTML body the CSS class “light-theme.” -->
+<body class="light-theme">
+
+<!-- Add a main div to the body of the HTML page and give it a CSS id of container. -->
+<div id="container">
+    
+    <!-- Add an HTML icon tag with an onclick even that calls the function toggleMode and pass-in the reference this.  
+        Give the element and id of icon-mode, CSS classes “fa fatoggle-off pull-right,” and inline CSS styling 
+        with a font size of 28 pixels.  Inside the icon element added an HTML span tag with an id of icon-text.  -->
+    <i onclick="toggleMode(this)" class="fa fatoggle-off pull-right" style="font-size: 28px" id="icon-mode"><span id="icon-text"></span></i>
+
+    <br>
+
+    <!-- h1 with the CSS class app-header and a text value of “Welcome to the Palindrome App!”   -->
+    <h1 class="app-header">Welcome to the Palindrome App!</h1>
+
+
+<!-- Creating a div wrapper with an id of "favorite-authors". -->
+<div class="card-container">
+    
+  <!-- Adding card class to give box shadow effect. -->
+  <div class="card">
+      
+      <!-- card-title with a text value of “Palindrome Checker”. -->
+      <div class="card-title">Palindrome Checker</div>
+
+      <!--Class card-content to add padding. -->
+      <div class="card-content">
+
+        <!-- Displays form class in a single auto formatted column. -->    
+        <div class="form">    
+
+          <!-- The form-field class adds padding. -->
+          <div class="form-field">
+
+            <!-- form-field with a text value of “Phrase value:”. -->
+            <label for="txtPhrase">Phrase value:</label>
+
+            <!-- Input field with an id txtPhrase. -->
+            <input type="text" id="txtPhrase" class="input">
+
+          </div><!-- ***** /.form-field ***** -->
+
+
+          <!-- The form-field class adds padding. -->
+          <div class="form-field">
+          
+            <!-- form-field button with an id of btnCheckPhrase. -->
+            <button type="button" id="btnCheckPhrase" class="btn btn-primary full-width">Check Phrase</button>
+
+          </div><!-- ***** /.form field ***** -->
+        </div><!-- ***** /.form ***** -->         
+      </div><!-- ***** /.card-content ***** -->
+  </div><!-- ***** /.card ***** -->
+</div><!-- ***** /#card-container ***** -->
+
+
+<!-- Return home back to Index. --> 
+<div class="return-home"><a href="../index.html">Return</a></div>
+
+
+<!-- Creating a div wrapper with an id of "favorite-authors". -->
+<div class="card-container">
+    
+  <!-- Adding card class to give box shadow effect. -->
+  <div class="card">
+      
+    <!-- card title with a text value of “Palindrome Results”. -->
+    <div class="card-title">Palindrome Results</div>
+
+    <!--Class card-content to add padding. -->
+    <div class="card-content">
+
+
+
+      <!--  div with an id of assign-results-header .  -->
+      <div id="assign-results-header"></div>
+
+
+      <!--  div with an id of assign-results and a CSS class of assign-results-text .  -->
+      <div id="assign-results" class="assign-results-text"></div>      
+      
+
+
+
+    </div><!-- ***** /.card-content ***** -->
+  </div><!-- ***** /.card ***** -->
+</div><!-- ***** /#card-container ***** -->
+
+
+</div><!-- /#container -->
+
+<script>
+    
+/*
+============================================================
+; Title: theme.html
+; Author: Professor Krasso
+; Date: 22 March 2021
+; Description: An example program that demonstrates how to switch 
+; website themes using JavaScript.
+;============================================================
+*/
+
+
+
+/**
+* Set the default theme to light if one has not been set in the browsers localStorage
+*/
+setDefaultTheme();
+
+/**
+ * Function to switch the users selected website theme
+ * @param x (this instance)
+*/
+function toggleMode(x) {
+  let colorTheme = document.body.classList; // get the body's CSS class
+  let iconMode = x.classList; // get the current classes assigned to the triggered button
+
+/**
+ * If the current body class is set to the light-theme, update the user's preference to the dark-theme in the browsers
+ * local storage.
+*/
+    if (colorTheme.value === "light-theme") {
+      localStorage.clear();
+      localStorage.setItem("mode", "dark-theme");
+      localStorage.setItem("iconMode", "fa-toggle-on");
+      localStorage.setItem("iconText", "Dark Mode");
+    }
+    
+/**
+ * If the current body class is set to the dark-theme, update the user's preference to the light-theme in the browsers
+ * local storage.
+*/
+    else {
+      localStorage.clear();
+      localStorage.setItem("mode", "light-theme");
+      localStorage.setItem("iconMode", "fa-toggle-off");
+      localStorage.setItem("iconText", "Light Mode");
+    }
+
+/**
+ * Apply the updated selection to the HTML page elements
+*/
+    colorTheme.value = localStorage.getItem("mode");
+    iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
+    document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText");
+}
+
+
+/**
+ * Function to clear the browsers localStorage and set the default theme to light-theme.
+ * This function is for demonstration purposes only and does not need to be included in any of your solutions.
+*/
+function clearLocalStorage() {
+  localStorage.clear();
+  document.body.classList.value = "light-theme";
+  document.getElementById("icon-text").innerHTML = "Light Mode";
+  document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
+}
+
+
+
+
+
+/*
+============================================================
+; Title: Web 330 Assign_2
+; Author: Professor Krasso
+; Date: 15 January 2023
+; Description: Test a string value if it's a palindrome or not.  
+;============================================================
+*/
+
+
+
+// Create a function named getTodaysDate() and return a new JavaScript date with the parameter “en-US”
+
+function getTodaysDate() {
+  return new Date().toLocaleDateString('en-US');
+}
+
+
+
+/**
+ * Create a function named getLength() with a single parameter for a string value.  
+ * In the body of the function, return the strings length. 
+ */ 
+
+function getLength(string) {
+  return string.length;
+}
+
+
+
+/**
+ * Create a function named reverse() with a single parameter for a string value.  
+ * In the body of the function, split the string to a character array, 
+ *  reverse the string (use JavaScript’s built-in reverse() function), 
+ *  and then covert the character array back to a string value 
+ *  (use JavaScript’s join() function).  Finally, return the string.  
+ */ 
+
+ function reverse(string) {
+  return string.split("").reverse().join("");
+ } 
+
+
+
+/**
+ *  Create a function named isPalindrome() with a single parameter for a string value.  
+ * In the body of the function, call the reverse() function 
+ * (this was created in c) and return true if the results from the 
+ * reverse() function call equal the string parameter.  
+ * If they do not match, return false.   
+*/
+
+function isPalindrome(string) {
+
+  let results;
+
+if (string === reverse(string)) {
+  results = true;
+} else {
+  results = false;
+}
+   
+  return results;
+}
+
+
+
+
+
+
+// Register an onclick even using document.getElementById(“id”).onclick function 
+
+document.getElementById("btnCheckPhrase").onclick = function() {
+  
+  // Capture the inputted phrase and assign it to a variable named txtPhrase  
+  let txtPhrase = document.getElementById("txtPhrase").value;
+
+  //	Assign the “assign-results” div to a variable named assignResults 
+  let assignResults = document.getElementById("assign-results"); 
+
+  // Create a variable named today and assign it the results from the getTodaysDate() function call  
+  let today = getTodaysDate();
+
+  // Create a variable named len and assign it the results from the getLength() function call.   
+  let len = getLength(txtPhrase);
+
+  // Create a variable named reversedPhrase and assign it the results from the reverse() function call.  
+  let reversedPhrase = reverse(txtPhrase); 
+
+
+  // Create a string variable named header and build a string that matches the output in
+  // Exhibit A, item 7 (hint: use the variables you created in items 3-5 to build the string) 
+  let header = "Date: " + today + "<br>Original Phrase: " + txtPhrase + "<br>Reversed Phrase: " + reversedPhrase + "<br>Phrase Length: " + len;
+
+
+
+  // Assign the header variable to the assign-results-header div using the innerHTML property.  See Exhibit B. 
+  document.getElementById("assign-results-header").innerHTML = header;
+
+
+
+  /**
+ * Using an if…else statement, call the isPalindrome() function by passing-in the txtPhrase variable.  
+ * Make sure you append the txtPhrase variable with JavaScripts toLowerCase() function.  
+ * If true, assign the string message in Exhibit C. to the assignResults div’s innerHTML.   
+ */ 
+
+let results
+
+if (isPalindrome(txtPhrase) === true) {
+results = document.getElementById('assign-results').innerHTML = txtPhrase.toLowerCase() + " <b><u>is</u></b> a palindrome!";
+} else {
+results = document.getElementById('assign-results').innerHTML = txtPhrase.toLowerCase() + " <b><u>is not</u></b> a palindrome!";
+}
+
+}
+
+
+
+</script>
+</body>
+</html>
