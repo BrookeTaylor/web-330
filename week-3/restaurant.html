@@ -1,0 +1,399 @@
+<!-- 
+    Title: Assignment 3.2 Restaurant App
+    Arthur: Professor Krasso
+    Date: 01/22/23
+    Modified By: Brooks
+    Description: Assignment 3.2 Restaurant App!
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Give the HTML document a title of “WEB 330 – Enterprise JavaScript II” -->
+    <title>WEB 330 – Enterprise JavaScript II</title>
+
+    <!-- Link to external stylesheets. -->
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="../site.css">
+    <link rel="stylesheet" href="restaurant.css">
+
+    <!-- Font Awesome. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <!-- Google Fonts Oswald. -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link to theme.js script. -->
+    <script src="../theme.js"></script>
+
+</head>
+
+<!-- Give the HTML body the CSS class “light-theme.” -->
+<body class="light-theme">
+
+<!-- Add a main div to the body of the HTML page and give it a CSS id of container. -->
+<div id="container">
+    
+    <!-- Add an HTML icon tag with an onclick even that calls the function toggleMode and pass-in the reference this.  
+        Give the element and id of icon-mode, CSS classes “fa fatoggle-off pull-right,” and inline CSS styling 
+        with a font size of 28 pixels.  Inside the icon element added an HTML span tag with an id of icon-text.  -->
+    <i onclick="toggleMode(this)" class="fa fatoggle-off pull-right" style="font-size: 28px" id="icon-mode"><span id="icon-text"></span></i>
+
+    <br>
+
+    <!-- h1 with the CSS class app-header and a text value of “Welcome to the Restaurant App!”   -->
+    <h1 class="app-header">Welcome to the Restaurant App!</h1>
+
+
+<!-- Creating a div wrapper for the card. -->
+<div class="card-container">
+    
+  <!-- Adding card class to give box shadow effect. -->
+  <div class="card">
+      
+      <!-- card-title with a text value of “Restaurant Menu”. -->
+      <div class="card-title">Restaurant Menu</div>
+
+      <!--Class card-content to add padding. -->
+      <div class="card-content menu">
+
+
+
+
+        <div class="card-container">
+          <div class="card">
+
+            <!-- card-title with a text value of “Beverages” -->
+            <div class="card-title">Beverages</div>
+            <div class="card-content" id="beverages">
+
+              <!-- card-content with four labels and four checkbox input fields -->
+              <input type="checkbox" id="soda" name="Soda" value="3.3">
+              <label for="soda">Soda ($3.30)</label><br> 
+              
+              <input type="checkbox" id="sweetTea" name="Sweet Tea" value="3.3">
+              <label for="sweetTea">Sweet Tea ($3.30)</label><br> 
+
+              <input type="checkbox" id="icedCoffee" name="Iced Coffee" value="2.49">
+              <label for="icedCoffee">Iced Coffee ($2.49)</label><br> 
+
+              <input type="checkbox" id="bottledWater" name="Bottled Water" value="2.15">
+              <label for="bottledWater">Bottled Water ($2.15)</label><br>    
+
+
+            </div><!-- ***** /.card-content ***** -->       
+          </div><!-- ***** /.card ***** -->          
+        </div><!-- ***** /#card-container ***** -->
+
+
+
+
+
+
+        <div class="card-container">
+          <div class="card">
+
+            <!-- card-title with a text value of “Appetizers” -->
+            <div class="card-title">Appetizers</div>
+            <div class="card-content" id="appetizers">
+
+              <!-- card-content with four labels and four checkbox input fields  -->
+              <input type="checkbox" id="nachos" name="Nachos" value="6.6">
+              <label for="nachos">Nachos ($6.60)</label><br> 
+
+              <input type="checkbox" id="chipsAndSalsa" name="Chips and Salsa" value="5.5">
+              <label for="chipsAndSalsa">Chips and Salsa ($5.50)</label><br> 
+
+              <input type="checkbox" id="pretzelWithCheese" name="Pretzel with Cheese" value="8.8">
+              <label for="pretzelWithCheese">Pretzel with Cheese ($8.80)</label><br> 
+
+              <input type="checkbox" id="friedPickles" name="Fried Pickles" value="8.25">
+              <label for="friedPickles">Fried Pickles ($8.25)</label><br>    
+
+            </div><!-- ***** /.card-content ***** -->       
+          </div><!-- ***** /.card ***** -->          
+        </div><!-- ***** /#card-container ***** -->
+
+
+
+
+
+
+
+        <div class="card-container">
+          <div class="card">
+
+            <!-- card-title with a text value of “Main Courses” -->
+            <div class="card-title">Main Courses</div>
+            <div class="card-content" id="main-courses">
+
+              <!-- card-content with four labels and four checkbox input fields  -->
+              <input type="checkbox" id="streetTacos" name="Street Tacos" value="9.7">
+              <label for="streetTacos">Street Tacos ($9.70)</label><br> 
+
+              <input type="checkbox" id="bonelessWings" name="Boneless Wings" value="12.8">
+              <label for="bonelessWings">Boneless Wings ($12.80)</label><br> 
+
+              <input type="checkbox" id="cheeseburgerWithFries" name="Cheese Burger with Fries" value="12.65">
+              <label for="cheeseburgerWithFries">Cheese Burger with Fries ($12.65)</label><br> 
+
+              <input type="checkbox" id="chickenWrapWithSalad" name="Chicken Wrap with Salad" value="9.65">
+              <label for="chickenWrapWithSalad">Chicken Wrap with Salad ($9.65)</label><br>    
+
+
+
+            </div><!-- ***** /.card-content ***** -->       
+          </div><!-- ***** /.card ***** -->          
+        </div><!-- ***** /#card-container ***** -->
+
+
+
+
+
+
+
+        <div class="card-container">
+          <div class="card">
+
+            <!-- card-title with a text value of “Desserts” -->
+            <div class="card-title">Dessert</div>
+            <div class="card-content" id="desserts">
+
+              <!-- card-content with four labels and four checkbox input fields  -->
+              <input type="checkbox" id="iceCream" name="Ice Cream" value="4.3">
+              <label for="iceCream">Ice Cream ($4.30)</label><br> 
+
+              <input type="checkbox" id="chocolateCake" name="Chocolate Cake" value="5.4">
+              <label for="chocolateCake">Chocolate Cake ($5.40)</label><br> 
+
+              <input type="checkbox" id="applePie" name="Apple Pie" value="3.8">
+              <label for="applePie">Apple Pie ($3.80)</label><br> 
+              
+              <!-- Button with an id of btnOrder and a text value of “Place Order” . -->
+              <button type="button" id="btnOrder" class="btn btn-primary full-width">Place Order</button>
+
+
+
+            </div><!-- ***** /.card-content ***** -->       
+          </div><!-- ***** /.card ***** -->          
+        </div><!-- ***** /#card-container ***** -->
+
+
+
+
+
+
+      </div><!-- ***** /.card-content ***** -->
+  </div><!-- ***** /.card ***** -->
+</div><!-- ***** /#card-container ***** -->
+
+<br>
+
+<!-- anchor tag with a text value of “Return” and a link back to the index.html landing page -->
+<div class="return-home"><a href="../index.html">Return</a></div>
+
+
+
+
+
+
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
+<!-- Creating a div wrapper for the card. -->
+<div class="card-container">
+    
+  <!-- Adding card class to give box shadow effect. -->
+  <div class="card">
+      
+      <!-- card-title with a text value of “Order Summary”. -->
+      <div class="card-title">Order Summary</div>
+
+      <!-- card-content with an id of order-total and a CSS class of assign-results-text -->
+      <div class="card-content assign-results-text" id="order-total">
+
+
+    
+
+
+      </div><!-- ***** /.card-content ***** -->
+  </div><!-- ***** /.card ***** -->
+</div><!-- ***** /#card-container ***** -->
+
+
+
+
+
+
+
+
+
+</div><!-- /#container -->
+
+
+
+
+
+<!--Set the script tag to type module.  -->
+<script type="module">
+
+  // Import the Bill, Beverage, Appetizer, MainCourse, and Dessert classes from the index.js file.  
+  import { Bill, Beverage, Appetizer, MainCourse, Dessert } from "./index.js";
+
+
+  // Register an onclick event for the btnOrder element 
+  document.getElementById("btnOrder").onclick = function () {
+
+    // Create variables to hold the divs where the checkboxes are placed in the HTML document. 
+    const beveragesEl = document.getElementById("beverages");
+    const beverages = beveragesEl.getElementsByTagName("input");
+
+    const appetizerEl = document.getElementById("appetizers");
+    const appetizers = appetizerEl.getElementsByTagName("input");
+
+    const mainCoursesEl = document.getElementById("main-courses");
+    const mainCourses = mainCoursesEl.getElementsByTagName("input");
+
+    const dessertsEl = document.getElementById("desserts");
+    const deserts = dessertsEl.getElementsByTagName("input");
+
+
+    // create a new instance of the Bill class
+    const bill = new Bill();
+
+
+    /**
+    * Using a for…of loop, iterate over the variables that contains the “input” fields.  
+    * In the body of the for loop and an if statement that checks if the looped over 
+    * value is checked.  If the item is checked, call the appropriate add function 
+    * from the Bill class and pass-in the name and value.  
+    */
+
+    for (let beverage of beverages) {
+      if (beverage.checked) {
+        bill.addBeverage(new Beverage(beverage.name, beverage.value));
+      }
+    }
+
+
+    for (let appetizer of appetizers) {
+      if (appetizer.checked) {
+        bill.addAppetizer(new Appetizer(appetizer.name, appetizer.value));
+      }
+    }
+
+
+    for (let mainCourse of mainCourses) {
+      if (mainCourse.checked) {
+        bill.addMainCourse(new MainCourse(mainCourse.name, mainCourse.value));
+      }
+    }
+
+
+    for (let dessert of desserts) {
+      if (dessert.checked) {
+        bill.addDessert(new Dessert(dessert.name, dessert.value));
+      }
+    }
+
+
+    // find the “order-total” div and bind the results from the getTotal() function.
+    document.getElementById("order-total").innerHTML = "Your order total is " + bill.getTotal();
+
+  }; 
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+/*
+============================================================
+; Title: theme.html
+; Author: Professor Krasso
+; Date: 22 March 2021
+; Description: An example program that demonstrates how to switch 
+; website themes using JavaScript.
+;============================================================
+*/
+
+
+
+/**
+* Set the default theme to light if one has not been set in the browsers localStorage
+*/
+setDefaultTheme();
+
+/**
+ * Function to switch the users selected website theme
+ * @param x (this instance)
+*/
+function toggleMode(x) {
+  let colorTheme = document.body.classList; // get the body's CSS class
+  let iconMode = x.classList; // get the current classes assigned to the triggered button
+
+/**
+ * If the current body class is set to the light-theme, update the user's preference to the dark-theme in the browsers
+ * local storage.
+*/
+    if (colorTheme.value === "light-theme") {
+      localStorage.clear();
+      localStorage.setItem("mode", "dark-theme");
+      localStorage.setItem("iconMode", "fa-toggle-on");
+      localStorage.setItem("iconText", "Dark Mode");
+    }
+    
+/**
+ * If the current body class is set to the dark-theme, update the user's preference to the light-theme in the browsers
+ * local storage.
+*/
+    else {
+      localStorage.clear();
+      localStorage.setItem("mode", "light-theme");
+      localStorage.setItem("iconMode", "fa-toggle-off");
+      localStorage.setItem("iconText", "Light Mode");
+    }
+
+/**
+ * Apply the updated selection to the HTML page elements
+*/
+    colorTheme.value = localStorage.getItem("mode");
+    iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
+    document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText");
+}
+
+
+/**
+ * Function to clear the browsers localStorage and set the default theme to light-theme.
+ * This function is for demonstration purposes only and does not need to be included in any of your solutions.
+*/
+function clearLocalStorage() {
+  localStorage.clear();
+  document.body.classList.value = "light-theme";
+  document.getElementById("icon-text").innerHTML = "Light Mode";
+  document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
+}
+</script>
+
+</body>
+</html>

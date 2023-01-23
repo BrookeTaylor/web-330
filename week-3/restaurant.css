@@ -1,0 +1,10 @@
+/**
+    Title:restaurant.css
+    Author: Professor Krasso
+    Date 22 January 2023
+    Description: Aligning menu.
+*/
+.menu {
+    display: grid; 
+    grid-template-columns: auto auto;
+}
