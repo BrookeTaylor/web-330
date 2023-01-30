@@ -137,6 +137,17 @@ body.light-theme {
     --btn-hover-background-color: #D6A800;
     --btn-hover-color: #4F3674;
     --input-border-color: #CCC;
+
+/**
+    Add the following variables to the light-theme class:  
+*/
+
+    --table-header-background-color: #4F3674;
+    --table-header-color: #fff;
+    --table-border-color: #ddd;
+    --table-hover-background-color: #D6A800;
+    --table-hover-color: #4F3674;
+
 }
 
 /**
@@ -161,6 +172,17 @@ body.dark-theme {
 	--btn-hover-background-color: #7D4787;
 	--btn-hover-color: #FFF;
 	--input-border-color: #303030;
+
+/**
+    Add the following variables to the dark-theme class  
+*/
+
+    --table-header-background-color: #D176E1;
+    --table-header-color: #fff;
+    --table-border-color: #303030;
+    --table-hover-background-color: #7D4787;
+    --table-hover-color: #fff;
+
 }
 
 /**
@@ -216,4 +238,40 @@ h2, h3, h4 {
     background-color: var(--heading-background-color);
     padding: 10px;
     border: 1px solid var(--h1-border-color);
+}
+
+/**
+    Add the following CSS classes.
+*/
+
+.table {
+
+}
+
+/**
+    Set the CSS .table th background color to the variable --table-header-background-color 
+    and the text color to the variable --table-header-color 
+*/
+.table th {
+    background-color: var(--table-header-background-color);
+    color: var(--table-header-color);
+}
+
+/**
+    Set the table data and header’s border to the variable --table-border-color 
+*/
+.table td, th {
+    border: 1px solid var(--table-border-color);
+}
+
+/**
+    Create a CSS class called table-hover and set the pseudo class 
+    tr:hover background color to the variable --table-hover-background-color 
+    and the text color to the variable --tablehover-color.  
+    Set the cursor to a pointer.
+*/
+.table-hover tr:hover {
+    background-color: var(--table-hover-background-color);
+    color: var(--table-hover-color);
+    cursor: pointer;
 }

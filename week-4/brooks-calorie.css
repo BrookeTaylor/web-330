@@ -1,0 +1,23 @@
+/**
+    Title:restaurant.css
+    Author: Professor Krasso
+    Date 29 January 2023
+    Description: #
+*/
+
+/**
+    Add a CSS entry of #foodList to <yourLastName>-calorie.css 
+    and float the div to the right, give it a text color of #df546a, 
+    font size of 12 pixels, and a letter spacing of two pixels.  
+*/
+
+#foodList {
+    float: right;
+    color: #df546a;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+
+
+

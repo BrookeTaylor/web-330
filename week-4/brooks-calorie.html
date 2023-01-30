@@ -1,0 +1,294 @@
+<!-- 
+    Title: Assignment 3.2 Restaurant App
+    Arthur: Professor Krasso
+    Date: 01/29/23
+    Modified By: Brooks
+    Description: Assignment 4.2 Calorie App!
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Give the HTML document a title of “WEB 330 – Enterprise JavaScript II” -->
+    <title>WEB 330 – Enterprise JavaScript II</title>
+
+    <!-- Link to external stylesheets. -->
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="../site.css">
+    <link rel="stylesheet" href="brooks-calorie.css">
+
+    <!-- Font Awesome. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <!-- Google Fonts Oswald. -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link to theme.js script. -->
+    <script src="../theme.js"></script>
+
+</head>
+
+<!-- Give the HTML body the CSS class “light-theme.” -->
+<body class="light-theme">
+
+<!-- Add a main div to the body of the HTML page and give it a CSS id of container. -->
+<div id="container">
+    
+    <!-- Add an HTML icon tag with an onclick even that calls the function toggleMode and pass-in the reference this.  
+        Give the element and id of icon-mode, CSS classes “fa fatoggle-off pull-right,” and inline CSS styling 
+        with a font size of 28 pixels.  Inside the icon element added an HTML span tag with an id of icon-text.  -->
+    <i onclick="toggleMode(this)" class="fa fatoggle-off pull-right" style="font-size: 28px" id="icon-mode"><span id="icon-text"></span></i>
+
+    <br>
+
+    <!-- h1 with a CSS class of app-header and a text value of “Welcome to the Calorie App!”    -->
+    <h1 class="app-header">Welcome to the Calorie App!</h1>
+
+
+<!-- Creating a div wrapper for the card. -->
+<div class="card-container">
+    
+  <!-- Adding card class to give box shadow effect. -->
+  <div class="card">
+      
+      <!-- card-title with a text value of “Calorie Search Form”. -->
+      <div class="card-title">Calorie Search Form</div>
+
+      <!--Class card-content to add padding. -->
+      <div class="card-content menu">
+
+
+        <!-- form-field with a text value of “Enter a food item:” -->
+        <label for="txtFoodItem">Enter a food item:</label>
+
+        <!-- Input field with an id txtFoodItem. -->
+        <input type="text" id="txtFoodItem" class="input">
+
+        <br>
+
+        <!-- <span> tag with an id of foodList -->
+        <span id="foodList"></span>
+
+
+
+          <!-- The form-field class adds padding. -->
+          <div class="form-field">
+          
+            <!-- form-field button with an id of btnSearch and a text value of Search. -->
+            <button type="button" id="btnSearch" class="btn btn-primary full-width">Search</button>
+
+          </div><!-- ***** /.form field ***** -->
+
+
+
+
+      </div><!-- ***** /.card-content ***** -->
+  </div><!-- ***** /.card ***** -->
+</div><!-- ***** /#card-container ***** -->
+
+<br>
+
+<!-- Anchor tag with a link back to the index.html landing page.  -->
+<div class="return-home"><a href="../index.html">Return</a></div>
+
+
+
+
+<br><br>
+
+
+
+<!-- Creating a div wrapper for the card. -->
+<div class="card-container">
+    
+  <!-- Adding card class to give box shadow effect. -->
+  <div class="card">
+      
+      <!-- card-title with a text value of “Search Results”. -->
+      <div class="card-title">Search Results</div>
+
+      <!-- card-content with an id of order-total and a CSS class of assign-results-text -->
+      <div class="card-content assign-results-text" id="searchResults">
+
+
+
+  
+
+
+      </div><!-- ***** /.card-content ***** -->
+  </div><!-- ***** /.card ***** -->
+</div><!-- ***** /#card-container ***** -->
+
+
+
+
+
+
+</div><!-- /#container -->
+
+
+
+
+
+<!--Set the script tag to type module.  -->
+<script type="module">
+
+
+/*
+============================================================
+; Title: Assignment 4.2
+; Author: Professor Krasso
+; Date: 01/29/23
+; Description: Calorie App JavaScript. 
+;============================================================
+*/
+
+// Add an import statement for the CalorieConverter class  
+import { CalorieConverter } from "./calorie-converter.js";
+
+
+// Create a variable named txtFoodItemEl and assign it the txtFoodItem input field.  
+let txtFoodItemEl = document.getElementById("txtFoodItem");
+
+// Register an onclick event for the btnSearch field using the document.getElementById function. 
+document.getElementById("btnSearch").onclick = function () {
+
+  // Create a variable named txtFoodItem and assign it the inputted value 
+  let txtFoodItem = txtFoodItemEl.value;
+
+
+  /**
+   * Create a variable named foods and call the static find function from the 
+   * CalorieConverter class.  Make sure you use JavaScript’s built-in 
+   * toLowerCase() to lower case the passed-in inputted value.  
+   */
+  let foods = CalorieConverter.find(txtFoodItem.toLowerCase());
+
+  /**
+   * Create a variable named tableData and build a string to represent 
+   * an HTML table.  Using a for…of loop, iterate over the foods variable 
+   * and populate the HTML table with table rows and table data.  
+   * Outside of the tableData string, close the opening table tag 
+   * and bind the results to the searchResults div. 
+   */
+
+   let tableData = "<table class='table table-hover'><tr><th>Name</th><th>Calories</th></tr>";
+
+    for (let food of foods) {
+
+      tableData += "<tr><td>" + food.name + "</td><td>" + food.calories + "</td></tr>";
+
+      document.getElementById('searchResults').innerHTML = tableData + "</table>";
+    }  
+};
+
+
+
+
+
+// Register an event listener for keyup  
+document.addEventListener("keyup", function () {
+  if (event.key === "Enter") {
+  document.getElementById("btnSearch").click();
+  }
+});
+
+// Create a variable named foodList and call the static data 
+// field off of the CalorieConverter class. 
+let foodList = CalorieConverter.data;
+
+/**
+ * Create a variable named foodListData and build an HTML <i> string 
+ * for the list of available food items.  Using a for…of statement, 
+ * append the food.name to the variable string.  Outside of the 
+ * for…of statement bind the results to the foodList div’s innerHTML
+ */
+let foodListData = "";
+  for (const food of foodList) {
+    foodListData += food.name;
+    foodListData += ", ";
+    }
+
+document.getElementById("foodList").innerHTML = "<i>(Ex: " + foodListData.slice(0, -2) + " )</i>";
+    
+
+
+</script>
+
+
+
+
+
+ 
+<script>
+
+/*
+============================================================
+; Title: theme.html
+; Author: Professor Krasso
+; Date: 22 March 2021
+; Description: An example program that demonstrates how to switch 
+; website themes using JavaScript.
+;============================================================
+*/
+
+
+
+/**
+* Set the default theme to light if one has not been set in the browsers localStorage
+*/
+setDefaultTheme();
+
+/**
+ * Function to switch the users selected website theme
+ * @param x (this instance)
+*/
+function toggleMode(x) {
+  let colorTheme = document.body.classList; // get the body's CSS class
+  let iconMode = x.classList; // get the current classes assigned to the triggered button
+
+/**
+ * If the current body class is set to the light-theme, update the user's preference to the dark-theme in the browsers
+ * local storage.
+*/
+    if (colorTheme.value === "light-theme") {
+      localStorage.clear();
+      localStorage.setItem("mode", "dark-theme");
+      localStorage.setItem("iconMode", "fa-toggle-on");
+      localStorage.setItem("iconText", "Dark Mode");
+    }
+    
+/**
+ * If the current body class is set to the dark-theme, update the user's preference to the light-theme in the browsers
+ * local storage.
+*/
+    else {
+      localStorage.clear();
+      localStorage.setItem("mode", "light-theme");
+      localStorage.setItem("iconMode", "fa-toggle-off");
+      localStorage.setItem("iconText", "Light Mode");
+    }
+
+/**
+ * Apply the updated selection to the HTML page elements
+*/
+    colorTheme.value = localStorage.getItem("mode");
+    iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
+    document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText");
+}
+
+
+/**
+ * Function to clear the browsers localStorage and set the default theme to light-theme.
+ * This function is for demonstration purposes only and does not need to be included in any of your solutions.
+*/
+function clearLocalStorage() {
+  localStorage.clear();
+  document.body.classList.value = "light-theme";
+  document.getElementById("icon-text").innerHTML = "Light Mode";
+  document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
+}
+</script>
+
+</body>
+</html>
