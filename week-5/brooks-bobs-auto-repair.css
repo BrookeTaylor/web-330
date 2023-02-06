@@ -1,0 +1,28 @@
+/**
+    Title:
+    Author: Professor Krasso
+    Date 02/05/2023
+    Description: #
+*/
+
+/**
+    Add an entry to <yourLastName>-bobs-auto-repair.css for #cart-message 
+    and float the div to the right, give it a text color of df546a, 
+    a font size of 12 pixels, and a letter spacing of 2 pixels. 
+*/
+
+#cart-message {
+    float: right;
+    color: #df546a;
+    font-size: 12px;
+    letter-spacing: 2px;;
+}
+
+/**
+    Using the pseudo hover class, set the hover of the 
+    HTML <i> element to a cursor with a pointer.
+*/
+  
+#cart-message:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,381 @@
+<!-- 
+    Title: Assignment 5.2 Bob's Auto Repair
+    Arthur: Professor Krasso
+    Date: 02/05/23
+    Modified By: Brooks
+    Description: Assignment 4.2 Bob's Auto Repair!
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Give the HTML document a title of “WEB 330 – Enterprise JavaScript II” -->
+    <title>WEB 330 – Enterprise JavaScript II</title>
+
+    <!-- Link to external stylesheets. -->
+    <link rel="stylesheet" href="../theme.css">
+    <link rel="stylesheet" href="../site.css">
+    <link rel="stylesheet" href="brooks-bobs-auto-repair.css">
+
+    <!-- Font Awesome. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <!-- Google Fonts Oswald. -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link to theme.js script. -->
+    <script src="../theme.js"></script>
+
+
+
+
+
+
+
+            <!-- ***************** options ****************-->
+            <!-- ******* Required Modifications *****
+                            •	product.js 
+
+                            classmates posted
+                                                         s   -->
+                    <script src="cart-component.js"></script>
+
+
+
+
+
+
+
+
+</head>
+
+<!-- Give the HTML body the CSS class “light-theme.” -->
+<body class="light-theme">
+
+<!-- Add a main div to the body of the HTML page and give it a CSS id of container. -->
+<div id="container">
+    
+    <!-- Add an HTML icon tag with an onclick even that calls the function toggleMode and pass-in the reference this.  
+        Give the element and id of icon-mode, CSS classes “fa fatoggle-off pull-right,” and inline CSS styling 
+        with a font size of 28 pixels.  Inside the icon element added an HTML span tag with an id of icon-text.  -->
+    <i onclick="toggleMode(this)" class="fa fatoggle-off pull-right" style="font-size: 28px" id="icon-mode"><span id="icon-text"></span></i>
+
+    <br>
+
+    <!-- h1 with a CSS class of app-header and a text value of “Welcome to Bob’s Automotive Repair Shop!”    -->
+    <h1 class="app-header">Welcome to Bob’s Automotive Repair Shop!</h1>
+
+<!-- Creating a div wrapper for the card. -->
+<div class="card-container">
+    
+  <!-- Adding card class to give box shadow effect. -->
+  <div class="card">
+      
+      <!-- card-title with a text value of “Calorie Search Form”. -->
+      <div class="card-title">Product Listing</div>
+
+
+      <!--Class card-content to add padding. -->
+      <div class="card-content">
+
+
+
+
+
+
+
+      <!-- ******************** CHECK THIS OUT ************ -->
+        <cart-component></cart-component><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="form">
+            <div class="form-field">
+                <label for="productList">Choose a product:</label>
+        
+                <select class="drop-down-menu" name="productList" id="productList">
+                    <option value="select">--Select--</option>
+                    <option value="19.99">Oil Change</option>
+                    <option value="18.44">Filter Replacement</option>
+                    <option value="9.99">Wiper Fluid Refill</option>
+                </select>
+
+                <!-- form-field button with an id of btnAddProduct -->
+                <div class="form-field">
+                    <button class="btn btn-primary full-width" id="btnAddProduct">Add to Cart</button>
+                </div>
+    
+            </div><!-- .form-field -->
+                
+                <i id="cart-message">To view your shopping cart click on the cart icon</i>
+        
+        </div><!-- .form -->
+
+
+
+
+
+
+
+
+
+
+      </div><!-- ***** /.card-content ***** -->
+  </div><!-- ***** /.card ***** -->
+</div><!-- ***** /#card-container ***** -->
+
+<br>
+
+<!-- Anchor tag with a link back to the index.html landing page.  -->
+<div class="return-home"><a href="../index.html">Return</a></div>
+
+
+
+
+<br><br>
+
+
+
+<!-- Creating a div wrapper for the card. -->
+<div class="card-container">
+    
+  <!-- Adding card class to give box shadow effect. -->
+  <div class="card">
+
+    <!-- card-title with a text value of “Shopping Cart”. -->
+    <div class="card-title">Shopping Cart</div>
+
+    <!-- table header placed inside the second card’s content area with an id of shoppingCart -->
+    <!-- table data placed inside the second card’s content area with an id of shoppingCart -->
+    <div class="card-content" id="shoppingCart">
+
+
+
+  
+
+
+    </div><!-- ***** /.card-content ***** -->
+  </div><!-- ***** /.card ***** -->
+</div><!-- ***** /#card-container ***** -->
+
+
+
+
+
+
+</div><!-- /#container -->
+
+
+
+
+
+<!-- Set the script tag to type module. --> 
+<script type="module">
+
+// Add import statements for the Product and ShoppingCart classes. 
+
+import { Product } from "./product.js";
+import { ShoppingCart } from "./shopping-cart.js";
+
+// Instantiate a new ShoppingCart object and assign it to a variable named shoppingCart. 
+
+let shoppingCart = new ShoppingCart();
+
+// Call the setCartCount() function  
+
+setCartCount();
+
+
+
+// Register an onclick event for the btnAddProduct element 
+
+document.getElementById("btnAddProduct").addEventListener("click", function() {
+
+    // Create a variable named productList and assign it the productList div
+
+    let productList = document.getElementById("productList");
+
+    // Create a variable named product and assign it the 
+    // value productList.options[productList.selectedIndex].text 
+
+    let product = productList.options[productList.selectedIndex].text;
+
+    // Create a variable named productValue as assign it the 
+    // value productList.options[productList.selectedIndex].value 
+
+    let productValue = productList.options[productList.selectedIndex].value;
+
+
+
+
+
+
+
+
+
+  // Using an if statement, compare the product variable against the string value “-—Select--"
+  // If they do not match, call the ShoppingCart add function and pass-in a new Product object 
+  // using the product and productValue variables and arguments.  
+  
+  if (productValue !== "--Select--") {
+    shoppingCart.add(new Product(product, productValue));
+
+
+    // Call the setCartCount() function. 
+    
+    setCartCount();
+
+
+
+    // Alert the message “<product> was added to your shopping cart!” 
+
+    alert(product + " was added to your shopping cart!");
+
+    // Find the productList div and set option value to “select” 
+
+    productList.value = "select";
+
+  }
+
+
+    
+});
+
+
+
+
+// Register an onclick event for the cartIcon element   
+document.getElementById("cartIcon").onclick = function() {
+
+  // Create a variable named cartDisplayTable and assign it the 
+  // string value with the header of an HTML table
+  
+  let cartDisplayTable = "<table class='table table-hover'><tr><th>Name</th><th>Price</th></tr>";
+
+    // Using a for…of statement, iterate over the ShoppingCart object using 
+    //the Iterator you created in the shopping-cart.js file.  
+
+    for (let product of shoppingCart.products) {
+
+      // In the body of the for…of statement append the table with the 
+      // properties from the iterated product object (see Exhibit C, item 11). 
+
+      cartDisplayTable += "<tr><td>" + product.name + "</td><td>" + product.price + "</td></tr>";
+
+    }
+
+    // Outside of the for…of statement close the HTML string table 
+    
+    cartDisplayTable += "</table>";
+
+    // and bind the string to the shoppingCart div’s innerHTML 
+
+    document.getElementById("shoppingCart").innerHTML = cartDisplayTable;
+}
+
+
+
+
+
+
+
+// Create a function named setCartCount().  In the body of the function find 
+// the cart-count div, call the count() function from the ShoppingCart object 
+// and bind the results to the div’s innerHTML.  
+
+function setCartCount() {
+  document.getElementById("cart-count").innerHTML = shoppingCart.count();
+}
+
+
+
+
+</script>
+
+
+
+
+
+ 
+<script>
+
+/*
+============================================================
+; Title: theme.html
+; Author: Professor Krasso
+; Date: 22 March 2021
+; Description: An example program that demonstrates how to switch 
+; website themes using JavaScript.
+;============================================================
+*/
+
+
+
+/**
+* Set the default theme to light if one has not been set in the browsers localStorage
+*/
+setDefaultTheme();
+
+/**
+ * Function to switch the users selected website theme
+ * @param x (this instance)
+*/
+function toggleMode(x) {
+  let colorTheme = document.body.classList; // get the body's CSS class
+  let iconMode = x.classList; // get the current classes assigned to the triggered button
+
+/**
+ * If the current body class is set to the light-theme, update the user's preference to the dark-theme in the browsers
+ * local storage.
+*/
+    if (colorTheme.value === "light-theme") {
+      localStorage.clear();
+      localStorage.setItem("mode", "dark-theme");
+      localStorage.setItem("iconMode", "fa-toggle-on");
+      localStorage.setItem("iconText", "Dark Mode");
+    }
+    
+/**
+ * If the current body class is set to the dark-theme, update the user's preference to the light-theme in the browsers
+ * local storage.
+*/
+    else {
+      localStorage.clear();
+      localStorage.setItem("mode", "light-theme");
+      localStorage.setItem("iconMode", "fa-toggle-off");
+      localStorage.setItem("iconText", "Light Mode");
+    }
+
+/**
+ * Apply the updated selection to the HTML page elements
+*/
+    colorTheme.value = localStorage.getItem("mode");
+    iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
+    document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText");
+}
+
+
+/**
+ * Function to clear the browsers localStorage and set the default theme to light-theme.
+ * This function is for demonstration purposes only and does not need to be included in any of your solutions.
+*/
+function clearLocalStorage() {
+  localStorage.clear();
+  document.body.classList.value = "light-theme";
+  document.getElementById("icon-text").innerHTML = "Light Mode";
+  document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
+}
+</script>
+
+</body>
+</html>

@@ -37,7 +37,8 @@ export class CalorieConverter {
 
 
 static find(string) {
-    return this.data.filter((food) => food.name.toLowerCase() === string);
+    // fixed to includes()
+    return this.data.filter((food) => food.name.toLowerCase().includes(string));
 }
 
 };
