@@ -1,0 +1,30 @@
+/**
+    Title: flex-layout.css
+    Author: Professor Krasso
+    Date: 2/4/2021
+    Description: Styling to build a reusable flex layout; inspired by Bootstrap and Angular FlexLayout
+    Sources:
+        Bootstrap: https://github.com/twbs/bootstrap
+        Angular FlexLayout: https://github.com/angular/flex-layout
+ */
+
+/** 
+    In brooks-future-value.css add a CSS class for danger.  
+    Float the div to the right, set the text color to df546a, 
+    set the font size to 12 pixels, and set the letter spacing to 2 pixels.
+*/
+.danger {
+    float: right;
+    color: #df546a;
+    font-size: 12px;
+    letter-spacing: 2px;
+} 
+
+/**
+    In brooks-future-value.css add a CSS class for .form-label.  
+    Set the display to inline block and give the top padding a value of 1rem. 
+*/
+.form-label {
+    display: inline-block;
+    padding-top: 1rem;
+}

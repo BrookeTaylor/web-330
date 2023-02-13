@@ -1,0 +1,380 @@
+<!-- 
+    Title: Assignment 6.2 Future Value Calculator
+    Arthur: Professor Krasso
+    Date: 02/12/23
+    Modified By: Brooks
+    Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Give the HTML document a title of “WEB 330 – Enterprise JavaScript II” -->
+    <title>WEB 330 Enterprise JavaScript II</title>
+
+    <!-- Link to external stylesheets. -->
+    <link rel="stylesheet" type="text/css" href="../theme.css" /> 
+    <link rel="stylesheet" type="text/css" href="../site.css" />
+    <link rel="stylesheet" type="text/css" href="./flex-layout.css">
+    <link rel="stylesheet" href="brooks-future-value.css">
+
+    <!-- Font Awesome. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+
+    <!-- Google Fonts Oswald. -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link to theme.js script. -->
+    <script src="../theme.js"></script>
+
+</head>
+<body class="light-theme">
+
+<div class="assign-container">
+
+
+
+    <!-- Add an HTML icon tag with an onclick even that calls the function toggleMode and pass-in the reference this.  
+        Give the element and id of icon-mode, CSS classes “fa fatoggle-off pull-right,” and inline CSS styling 
+        with a font size of 28 pixels.  Inside the icon element added an HTML span tag with an id of icon-text.  -->
+    <i onclick="toggleMode(this)" class="fa fatoggle-off pull-right" style="font-size: 28px" id="icon-mode"><span id="icon-text"></span></i>
+
+
+
+
+    <div class="assign-content">
+
+    <!-- h1 with a CSS class of app-header and a text value of “Welcome to the Future Value App!”    -->
+    <h1 class="app-header">Welcome to the Future Value App!</h1>
+
+
+    <!-- Creating a div wrapper for the card. -->
+    <div class="card-container">
+
+        <!-- Adding card class to give box shadow effect. -->
+        <div class="card">
+
+            <!-- card-title with a text value of “Future Value Calculator” -->
+            <div class="card-title">Future Value Calculator</div>
+
+                <!-- Below this section and above item 3 and 4 in Exhibit C 
+                    you will need to create an empty row with a 12 column div 
+                    and assign it the CSS danger and an id of errorLog. -->
+                <div class="row">
+                    <div class="col-12 danger" id="errorLog"></div>
+                </div>
+
+            <div class="card-content">
+
+                
+
+                <div class="form">
+                    <div class="row">
+
+                        <!-- 5 column form-field with a text value of “Monthly Payment:” -->    
+                        <div class="col-5 form-field">
+                
+                            <!-- All form-field labels will need to be assigned the CSS class form-label. -->
+                            <label for="txtMonthlyPayment" class="form-label">Monthly Payment:</label>
+
+                            <!-- 7 column form-field input with an id of txtMonthlyPayment -->
+                            <input id="txtMonthlyPayment" class="col-7 input" type="text">
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        
+                        <!-- 5 column form-field with a text value of “Interest Rate:” -->
+                        <div class="col-5 form-field">
+                    
+                            <!-- All form-field labels will need to be assigned the CSS class form-label. -->
+                            <label for="txtYearlyRate" class="form-label">Interest Rate:</label>
+
+                            <!-- 7 column form-field input with an id of txtYearlyRate -->
+                            <input id="txtYearlyRate" class="input" type="text">
+                        </div>
+                    </div>
+
+<!-- HTML <i> with a CSS class of danger and a text value of “Enter 11% as 11.1:” -->
+<i class="danger">Enter 11% as 11.1:</i>
+
+                    <div class="row">
+
+                        <!-- 5 column form-field with a text value of “Number of Years:” -->
+                        <div class="col-5 form-field">
+                    
+                            <!-- All form-field labels will need to be assigned the CSS class form-label. -->
+                            <label for="listNumOfYears" class="form-label">Number of Years:</label>
+
+                            <!-- 7 column HTML select element with and id of listNumOfYears 
+                                a CSS class of drop-downmenu and options for years 1-10.  
+                                Set the value 1-10 to match the displayable text.  -->
+                            <select class="drop-down-menu" name="listNumOfYears" id="listNumOfYears">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                        <!-- form-field button with a text value of Calculate and an id of btnCalculate. -->
+                        <div class="form-field">
+                            <button class="btn btn-primary full-width" id="btnCalculate">Calculate</button>
+                        </div>
+                </div><!-- .form -->
+
+
+
+
+            </div><!-- .card-content -->
+
+        </div><!-- .card -->
+
+
+    </div>
+<!-- Anchor tag with a link back to the index.html landing page.  -->
+<div class="return-home"><a href="../index.html">Return</a></div>
+
+
+    <div class="card-container">
+        <div class="card">
+
+            <!-- card-title with a text value of “Calculation as of” 
+                and a span tag with an id of today (hint: we will bind 
+                the date to the span tag using JavaScript). -->
+            <div class="card-title">Calculation as of <span id="today"></span></div>
+
+            <!-- card-content with an id of futureValue.  -->
+            <div class="card-content" id="futureValue"></div>
+        </div>
+    </div>
+
+
+
+
+
+
+<script type="module">
+/*
+============================================================
+; Title: future-value
+; Author: Professor Krasso
+; Date: 02/12/2023
+; Description: 
+;============================================================
+*/
+
+// Add import statements for the classes FinanceCalculator and Validator. 
+
+import { FinanceCalculator } from "./finance-calculator.js";
+import { Validator } from "./validator.js";
+
+// Find the div with the id today and set the innerHTML to a new JavaScript date object.  
+// Using the toLocaleDateString function and pass-in “en-US” 
+
+document.getElementById("today").innerHTML = new Date().toLocaleDateString("en-US");
+
+// Register an onclick even for the btnCalculator 
+
+document.getElementById("btnCalculate").onclick = function () {
+
+    // Create a variable named monthlyPayment and assign it 
+    // the value from the txtMonthlyPayment input field. 
+
+    let monthlyPayment = document.getElementById("txtMonthlyPayment").value;
+
+    // Create a variable named rate and assign it the value from the txtYearlyRate input field. 
+
+    let rate = document.getElementById("txtYearlyRate").value;
+
+    // Create a variable named years and assign it the value from the listNumOfYears select element. 
+
+    let years = document.getElementById("listNumOfYears").value;
+
+    // Create a variable named errorLogEl and assign it the element errorLog.  
+
+    let errorLogEl = document.getElementById("errorLog");
+
+/**
+ * Instantiate a new Validator class supplying it with the values “Monthly Payment” 
+ * and the variable monthlyPayment and assign that to 
+ * a new variable named monthlyPaymentValidator. 
+ */
+
+    let monthlyPaymentValidator = new Validator("Monthly Payment", monthlyPayment);
+
+        // Call the addRequiredField() function on the monthlyPaymentValidator to make the field a required field. 
+
+        monthlyPaymentValidator.addRequiredField();
+
+        // Call the addRequiredFloatFIeld() function on the monthlyPaymentValidator to make the field a required float field.     
+
+        monthlyPaymentValidator.addRequiredFloatField();
+
+        // Call the addFloatMinField() function on the monthlyPaymentValidator and supply it a value of 100 
+        // to make the field minimum value of 100.  
+
+        monthlyPaymentValidator.addFloatMinField(100);
+
+
+
+/**
+ * Instantiate a new Validator class supplying it with the values “Interest Rate” 
+ * and the rate variable (see item 2) and assign it to 
+ * a new variable named rateValidator. 
+ */ 
+
+    let rateValidator = new Validator("Interest Rate", rate);
+
+        // Call the addRequiredField() function on the rateValidator to make the field a required field. 
+
+        rateValidator.addRequiredField();
+
+        // Call the addRequiredFloatField() function on the rateValidator to make the field a required float field. 
+
+        rateValidator.addRequiredFloatField();
+
+        // Call the addFlaotMaxField() function on the rateValidator and supply it a value of 100 to make the fields maximum value 100.  
+
+        rateValidator.addFloatMaxField(100);
+    
+    // Create a variable named errorLog and set it to an empty array. 
+   
+    let errorLog = [];
+
+/**
+ * Using an if statement, call the monthlyValidator.validate() function 
+ * and if the response is false, use a for…of statement to iterate 
+ * over the messages fields and push each message to the errorLog variable.  
+ */ 
+
+    if (!monthlyPaymentValidator.validate()) {
+        for (let msg of monthlyPaymentValidator.messages) {
+            errorLog.push(msg);
+        }
+    }
+
+/**
+ * Using an if statement, call the rateValidator.validate() function 
+ * and if the response is false, use a for…of statement to iterate 
+ * over the messages field and push each message to the errorLog variable.
+ */ 
+
+    if (!rateValidator.validate()) {
+        for (let msg of rateValidator.messages) {
+            errorLog.push(msg);
+        }
+    }
+
+
+
+
+    if (monthlyPaymentValidator.validate() && rateValidator.validate()) {
+        errorLogEl.innerHTML = "";
+        let futureValue = FinanceCalculator.calculateFutureValue(monthlyPayment, rate, years);
+        document.getElementById("futureValue").innerHTML = "The future value is " + FinanceCalculator.convertToCurrency(futureValue);
+    } else {
+        errorLogEl.innerHTML = "";
+        let errorLogMessage = "<ul>";
+            for (let msg of errorLog) {
+                errorLogMessage += "<li>" + msg + "</li>";
+            }
+            errorLogEl.innerHTML = errorLogMessage + "</ul>";
+    }
+
+
+}
+
+
+
+</script>
+
+
+    </div><!-- .assign-content -->
+    <script>
+
+        /*
+        ============================================================
+        ; Title: theme.html
+        ; Author: Professor Krasso
+        ; Date: 22 March 2021
+        ; Description: An example program that demonstrates how to switch 
+        ; website themes using JavaScript.
+        ;============================================================
+        */
+        
+        
+        
+        /**
+        * Set the default theme to light if one has not been set in the browsers localStorage
+        */
+        setDefaultTheme();
+        
+        /**
+         * Function to switch the users selected website theme
+         * @param x (this instance)
+        */
+        function toggleMode(x) {
+          let colorTheme = document.body.classList; // get the body's CSS class
+          let iconMode = x.classList; // get the current classes assigned to the triggered button
+        
+        /**
+         * If the current body class is set to the light-theme, update the user's preference to the dark-theme in the browsers
+         * local storage.
+        */
+            if (colorTheme.value === "light-theme") {
+              localStorage.clear();
+              localStorage.setItem("mode", "dark-theme");
+              localStorage.setItem("iconMode", "fa-toggle-on");
+              localStorage.setItem("iconText", "Dark Mode");
+            }
+            
+        /**
+         * If the current body class is set to the dark-theme, update the user's preference to the light-theme in the browsers
+         * local storage.
+        */
+            else {
+              localStorage.clear();
+              localStorage.setItem("mode", "light-theme");
+              localStorage.setItem("iconMode", "fa-toggle-off");
+              localStorage.setItem("iconText", "Light Mode");
+            }
+        
+        /**
+         * Apply the updated selection to the HTML page elements
+        */
+            colorTheme.value = localStorage.getItem("mode");
+            iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
+            document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText");
+        }
+        
+        
+        /**
+         * Function to clear the browsers localStorage and set the default theme to light-theme.
+         * This function is for demonstration purposes only and does not need to be included in any of your solutions.
+        */
+        function clearLocalStorage() {
+          localStorage.clear();
+          document.body.classList.value = "light-theme";
+          document.getElementById("icon-text").innerHTML = "Light Mode";
+          document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
+        }
+        </script>
+</div>
+
+</body>
+</html>
