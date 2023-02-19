@@ -1,0 +1,291 @@
+<!-- 
+    Title: Assignment 7.2 WhatABook, Part 1 App!
+    Arthur: Professor Krasso
+    Date: 02/19/23
+    Modified By: Brooks
+    Description: Site using XML to display a table. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Give the HTML document a title of “WEB 330 – Enterprise JavaScript II” -->
+    <title>WEB 330 Enterprise JavaScript II</title>
+
+    <!-- Link to external stylesheets. -->
+    <link rel="stylesheet" type="text/css" href="../theme.css" /> 
+    <link rel="stylesheet" type="text/css" href="../site.css" />
+    <link rel="stylesheet" type="text/css" href="./flex-layout.css">
+
+
+    <!-- Font Awesome. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+
+    <!-- Google Fonts Oswald. -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Link to theme.js script. -->
+    <script src="../theme.js"></script>
+
+</head>
+<body class="light-theme">
+
+<div class="assign-container">
+
+
+    <!-- Add an HTML icon tag with an onclick even that calls the function toggleMode and pass-in the reference this.  
+        Give the element and id of icon-mode, CSS classes “fa fatoggle-off pull-right,” and inline CSS styling 
+        with a font size of 28 pixels.  Inside the icon element added an HTML span tag with an id of icon-text.  -->
+    <i onclick="toggleMode(this)" class="fa fatoggle-off pull-right" style="font-size: 28px" id="icon-mode"><span id="icon-text"></span></i>
+
+
+    <div class="assign-content">
+
+    <!-- h1 with a CSS class of app-header and a text value of “Welcome to the WhatABook, Part 1 App!”    -->
+    <h1 class="app-header">Welcome to the WhatABook, Part 1 App!</h1>
+
+    <div class="card-container">
+
+        <div class="card">
+
+            <!-- card-title with a text value of “Book Listing” -->
+            <div class="card-title">Book Listing</div>
+
+            <!-- card-content with an id of bookList. -->
+            <div class="container-content" id="bookList"></div>
+            
+
+        </div>
+
+    </div>
+
+    
+
+<!-- Anchor tag with a link back to the index.html landing page.  -->
+<div class="return-home"><a href="../index.html">Return</a></div>
+
+
+
+    <div class="card-container">
+
+        <div class="card">
+
+            <!-- card-title with a text value of “Selected Book” -->
+            <div class="card-title">Selected Book</div>
+
+            <!-- card-content with an id of selectedBook -->
+            <div class="container-content" id="selectedBook"></div>
+
+        </div>
+
+    </div>
+
+<script>
+/*
+============================================================
+; Title: WhatABook JavaScript
+; Author: Professor Krasso
+; Date: 2/19/2023
+; Description: JavaScript file to go along with site. 
+;============================================================
+*/
+        
+// Register an event listener for DOMContentLoaded 
+document.addEventListener("DOMContentLoaded", () => {
+
+  const fileName = "books.xml";
+
+  // Using JavaScripts fetch() API, pass-in the fileName variable.   
+  fetch(fileName)
+
+  // Add a then clause using arrow functions the res data object and call the res.text() function.  
+  .then(res => res.text())
+
+  // Add another then clause using arrow functions with the data object  
+  .then(data => {
+
+  // Create a new variable named domParser and instantiate 
+  // a new DOMParser object and assign it to the variable.
+  let domParser = new DOMParser();  
+
+/**
+* Create a new variable named xmlBooks and call the parseFromString() 
+* on the domParser variable and supply the function with the data object 
+* and the string “text/xml” 
+*/
+  let xmlBooks = domParser.parseFromString(data, "text/xml");
+
+  // Call the laodBooks() function supplying it the xmlBooks 
+  loadBooks(xmlBooks);
+
+  // Call the addIsbnClickEvents() function.  
+  addIsbnClickEvents();
+
+  });
+
+
+  function loadBooks(xml) {
+
+    // Create a variable named books and assign it the results 
+    // from the xml.getElementsByTagName(“book”) function call.
+    let books = xml.getElementsByTagName("book");
+
+    // Create a variable named tableData and build the header 
+    // for an HTML table using the CSS id “bookTable” 
+    // and CSS class “table” 
+    let tableData = "<table class='table table-hover' id='book1List'><thead id='bookTable'><tr><th>ISBN</th><th>Title</th><th>Description</th><th>Pages</th><th>Authors</th></tr></thead><tbody>";
+
+    // Using a for…of statement, iterate over the books variable and append each XML object to the bookTable variable
+    for (let book of books) {
+
+      let isbn = book.getElementsByTagName("isbn")[0].childNodes[0].nodeValue;
+      let title = book.getElementsByTagName("title")[0].childNodes[0].nodeValue;
+      let description = book.getElementsByTagName("description")[0].childNodes[0].nodeValue;
+      let pages = book.getElementsByTagName("pages")[0].childNodes[0].nodeValue;
+      let authors = book.getElementsByTagName("authors")[0].childNodes[0].nodeValue;
+
+      tableData += `<tr><td data-value='ISBN'><a href='#' class='isbn-link'>${title}</a></td><td data-value='Title'>${title}</td><td data-value='Description'>${description}</td><td data-value='Pages'>${pages}</td><td data-value='Author'>${authors}</td></tr>`;
+      
+    }
+
+    tableData += "</tbody></table>";
+            
+    // Outside of the for…of statement close the HTML table string and bind the variable to the bookList div’s innerHTML
+    document.getElementById("bookList").innerHTML = tableData;
+
+    }
+
+
+  // Create a function named anchorClicked() with a single parameter of the value e. 
+  function anchorClicked(e) {
+
+    e.preventDefault();
+
+    let self = this;
+    let cell = self.parentElement;
+    let row = cell.parentElement;
+
+    let data = row.querySelectorAll("td");
+
+    // Next, build an HTML string for an unordered list (set an inline CSS style to list-styletype: none)
+    let bookData = "<ul style='list-style-type: none;'>";
+
+   
+
+    // use a for…of loop to iterate over the data variable and append the iterated object dataset fields to the unordered list
+    for (let field of data) {
+        bookData += `<li><b>${field.dataset.value}:</b> ${field.textContent}</li>`
+
+    }
+
+    // Outside for…of statement, bind the bookData variable to the selectedBook.innerHTML property. 
+    document.getElementById("selectedBook").innerHTML = bookData + "</ul>";
+
+  }
+
+
+  // Create a function named addIsbnClickEvents() 
+  function addIsbnClickEvents() {
+
+    // Create a variable named viewButtons and assign it the results 
+    // from document.querySelectorAll(“#bookTable tbody .isbn-link”). 
+    let viewButtons = document.querySelectorAll("#bookList tbody .isbn-link");
+
+    // Create a standard for loop and in the body add event listeners for “click” using the anchorClicked() function
+    for (let i = 0; i < viewButtons.length; i++) {
+
+      viewButtons[i].addEventListener("click", anchorClicked);
+
+    }
+
+  }
+
+});
+</script>    
+    
+</div><!-- .assign-content -->
+
+<script>
+/*
+============================================================
+; Title: theme.html
+; Author: Professor Krasso
+; Date: 22 March 2021
+; Description: An example program that demonstrates how to switch 
+; website themes using JavaScript.
+;============================================================
+*/
+        
+/**
+ * Set the default theme to light if one has not been set in the browsers localStorage
+ */
+setDefaultTheme();
+        
+/**
+ * Function to switch the users selected website theme
+ * @param x (this instance)
+ */
+function toggleMode(x) {
+  
+  let colorTheme = document.body.classList; // get the body's CSS class
+  let iconMode = x.classList; // get the current classes assigned to the triggered button
+        
+/**
+ * If the current body class is set to the light-theme, update the user's preference to the dark-theme in the browsers
+ * local storage.
+ */
+
+  if (colorTheme.value === "light-theme") {
+    
+  localStorage.clear();
+  localStorage.setItem("mode", "dark-theme");
+  localStorage.setItem("iconMode", "fa-toggle-on");
+  localStorage.setItem("iconText", "Dark Mode");
+  }
+            
+/**
+ * If the current body class is set to the dark-theme, update the user's preference to the light-theme in the browsers
+ * local storage.
+ */
+
+  else {
+    
+  localStorage.clear();
+  localStorage.setItem("mode", "light-theme");
+  localStorage.setItem("iconMode", "fa-toggle-off");
+  localStorage.setItem("iconText", "Light Mode");
+  }
+        
+/**
+  * Apply the updated selection to the HTML page elements
+  */
+
+  colorTheme.value = localStorage.getItem("mode");
+  iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
+  document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText");
+
+}
+        
+        
+/**
+ * Function to clear the browsers localStorage and set the default theme to light-theme.
+ * This function is for demonstration purposes only and does not need to be included in any of your solutions.
+ */
+
+function clearLocalStorage() {
+  
+  localStorage.clear();
+  document.body.classList.value = "light-theme";
+  document.getElementById("icon-text").innerHTML = "Light Mode";
+  document.getElementById("icon-mode").classList.value = "fa fa-toggle-off pull-right";
+
+}
+</script>
+    
+</div><!-- .assign-container -->
+</body>
+</html>
